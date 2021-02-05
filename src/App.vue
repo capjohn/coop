@@ -83,4 +83,10 @@ export default {
     }
   }
 }
+button {
+    background-color:#D8D076;
+}
+a {
+    color: #D8D076;
+}
 </style>

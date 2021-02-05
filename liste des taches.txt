@@ -1,0 +1,5 @@
+Liste des taches:
+
+- Creation de compte
+- Connexion
+

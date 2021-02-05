@@ -85,12 +85,14 @@ export default {
 }
 button {
     background-color:#D8D076;
+    border: .1rem solid #D8D076;
+
 }
 a {
     color: #D8D076;
 }
 .button{
-  color: #D8D076;
+  background-color: #D8D076;
   border: .1rem solid #D8D076;
 }
 </style>

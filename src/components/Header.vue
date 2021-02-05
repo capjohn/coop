@@ -6,7 +6,6 @@
       <ul class="menu">
         <li><router-link to="/">Conversations</router-link></li>
         <li><router-link to="/membres">Membres</router-link></li>
-        <li><router-link to="/about">About</router-link></li>
         <li><button @click="seDeconnecter" id="deconnect">Se Déconnecter</button></li>
       </ul>
     </header>

@@ -41,7 +41,7 @@ export default {
       } else {
         api.get('members/'+this.$store.state.membre.id+'/signedin').catch(error => {
           this.$store.commit('seDeconnecter');
-          this.$store.commit('/se-connecter');
+          this.$router.push('/se-connecter');
         });
       }
     }).catch(error=>{

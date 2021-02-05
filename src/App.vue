@@ -89,4 +89,8 @@ button {
 a {
     color: #D8D076;
 }
+.button{
+  color: #D8D076;
+  border: .1rem solid #D8D076;
+}
 </style>

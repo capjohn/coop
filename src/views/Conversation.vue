@@ -4,9 +4,7 @@
         <h4>{{conversation.label}}</h4>
         <div class="messages">
             <template v-for="message in messages">
-                <blockquote>
-                    {{message.message}}
-                </blockquote>
+                <Message :message="message"></Message>
             </template>
         </div>
         <div ref="bottom">
@@ -22,7 +20,9 @@
     </div>
 </template>
 <script>
+import Message from '@/components/Message.vue';
 export default {
+    components : {Message},
     data(){
         return{
             conversation:false,
@@ -64,15 +64,22 @@ export default {
 .messages{
     padding-bottom: 1em;
 }
-    form{
-        background:aliceblue;
-        position: fixed;
-        bottom: 0;
-        left: 1em;
-        width: 100%;
-        margin: 0;
-    }
-    blockquote{
-        border-left: 0.3rem solid #BDB76B;
-    }
+form{
+    background:aliceblue;
+    position: fixed;
+    bottom: 0;
+    left: 1em;
+    width: 100%;
+    margin: 0;
+}
+blockquote{
+    border-left: 0.3rem solid #BDB76B;
+}    
+.message{
+    background: rgb(238, 238, 238);
+    padding: 1em;
+    margin: 1em 0;
+    border-radius: 15px;
+    max-width: max-content;
+}
 </style>

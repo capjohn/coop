@@ -41,7 +41,7 @@ export default {
       } else {
         api.get('members/'+this.$store.state.membre.id+'/signedin').catch(error => {
           this.$store.commit('seDeconnecter');
-          this.$store.commit('/se-connecter');
+          this.$router.push('/se-connecter');
         });
       }
     }).catch(error=>{
@@ -82,5 +82,17 @@ export default {
       color: #42b983;
     }
   }
+}
+button {
+    background-color:#D8D076;
+    border: .1rem solid #D8D076;
+
+}
+a {
+    color: #D8D076;
+}
+.button{
+  background-color: #D8D076;
+  border: .1rem solid #D8D076;
 }
 </style>

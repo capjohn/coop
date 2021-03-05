@@ -4,9 +4,11 @@
       <h1>Liste des conversations</h1>
       <CreerConversation/>
       <div>
+        <ul class="square-menu">
         <template v-for="conversation in $store.state.conversations">
           <Conversation :conversation="conversation"/>
         </template>
+        </ul>
       </div>
     </div>
   </div>
@@ -25,5 +27,8 @@
 <style>
 #down{
     padding-top:5em;
+}
+ul.square-menu {
+  list-style: none;
 }
 </style>

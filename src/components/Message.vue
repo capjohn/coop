@@ -27,7 +27,7 @@
                     </div>
                 </div>
                 <button class="button button-small">Enregistrer</button>
-                <button type="button" @click="annulerMessage" class="button button-clear">Annuler</button>
+                <button type="button" @click="annulerMessage" class="button button-clear" id='yellow'>Annuler</button>
             </form>
 
             <span v-else>{{message.message}}</span>
@@ -128,10 +128,12 @@
     padding: 2px 16px;
     text-decoration: none;
     border-radius: 15px;
+    color: black;
+    font-size: 1.1em;
     }
 
     li a:hover, .dropdown:hover .dropbtn {
-    background-color: lightgray;
+    background-color: #dfdabf;
     }
 
     li.dropdown {
@@ -157,9 +159,12 @@
     text-align: center;
     }
 
-    .dropdown-content a:hover {background-color: #f1f1f1;}
+    .dropdown-content a:hover {background-color: #dfdabf;}
 
     .dropdown:hover .dropdown-content {
     display: block;
+    }
+    #yellow{
+          color: #D8D076;
     }
 </style>

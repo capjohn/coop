@@ -16,7 +16,7 @@
                         <label>Tags</label>       
                         <input v-model="c.label" required type="text" placeholder="Quels sont les concepts abordés ?"/>
                         <button class="button">Modifier la conversation</button>
-                        <button @click="annulerModif" class="button button-clear">Annuler</button>
+                        <button @click="annulerModif" class="button button-clear"  id='yellow'>Annuler</button>
 
                     </fieldset>
                 </form> 

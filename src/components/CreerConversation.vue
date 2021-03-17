@@ -12,7 +12,7 @@
                         <label>Tags</label>
                         <input v-model="label" required type="text" placeholder="Quels sont les thèmes abordés ?">
                         <button>Créer la conversation</button>
-                        <button type="button" @click="masquerFormulaire" class="button button-clear">Annuler</button>
+                        <button type="button" @click="masquerFormulaire" class="button button-clear"  id='yellow'>Annuler</button>
 
                     </fieldset>
                 </form>
@@ -82,5 +82,8 @@ export default {
         padding: 1em;
         border-radius:1em;
     }
+}
+#yellow{
+    color: #D8D076;
 }
 </style>

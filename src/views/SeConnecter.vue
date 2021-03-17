@@ -1,5 +1,5 @@
 <template>
-<div class="container">
+<div class="log">
     <h1>Se Connecter</h1>
     <form @submit.prevent="connexion">
     <fieldset>
@@ -56,4 +56,15 @@ button {
 a {
     color: #D8D076;
 }
+.log{
+      position: relative;
+  margin: 30px auto;
+  padding: 20px 20px 20px;
+  width: 340px;
+  background: white;
+  border-radius: 3px;
+  -webkit-box-shadow: 0 0 200px rgba(255, 255, 255, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 200px rgba(255, 255, 255, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
 </style>

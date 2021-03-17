@@ -1,8 +1,8 @@
 <template>
     <li>
         <router-link :to="{name:'Conversation',params:{id : conversation.id}}" class="span">
-            <h2>Sujet</h2>
-            <h2><b>{{conversation.topic}}</b></h2>
+            <h4>Sujet</h4>
+            <h3><b>{{conversation.topic}}</b></h3>
             <h4>Tag</h4>
             <h4><b>{{conversation.label}}</b></h4>
         </router-link>
@@ -25,7 +25,7 @@ export default {
         font-weight: normal;
         font-size: 150%;
         width: 10em;
-        height: 255px;
+        height: 240px;
         text-align: center;
         text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.05);
         background: #D8D076;

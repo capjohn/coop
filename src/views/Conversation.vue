@@ -1,29 +1,37 @@
 <template>
     <div class="container" id="down" v-if="conversation">
         <div class="action">            
-            <a @click="editerConversation">Modifier </a>
-            <a @click="supprimerConversation"> Supprimer </a>
+            <a @click="editerConversation" class="button button-outline">Modifier </a>
+            <a @click="supprimerConversation" class="button button-outline"> 🗑 </a>
         </div>
 
-        <form v-if="editer" class="modifConver" @submit.prevent="modifierConversation">
-            <fieldset>
-                <label>Sujet</label>
-                <input v-model="conversation.topic" required type="text" placeholder="De quoi voulez vous discuter ?"/>
-                <label>Tags</label>       
-                <input v-model="conversation.label" required type="text" placeholder="Quels sont les concepts abordés ?"/>
-                <button class="button button-clear">Modifier la conversation</button>
-            </fieldset>
-        </form> 
+        <div id="creer-conversation" v-if="afficher">
+            <section>
+                <button class="close" @click="annulerModif">X</button>
+                <h3>Modifier une conversation</h3>
+                <form class="modifConversation" @submit.prevent="modifierConversation">
+                    <fieldset>
+                        <label>Sujet</label>
+                        <input v-model="c.topic" required type="text" placeholder="De quoi voulez vous discuter ?"/>
+                        <label>Tags</label>       
+                        <input v-model="c.label" required type="text" placeholder="Quels sont les concepts abordés ?"/>
+                        <button class="button">Modifier la conversation</button>
+                        <button @click="annulerModif" class="button button-clear">Annuler</button>
+
+                    </fieldset>
+                </form> 
+            </section>
+        </div>
         <template v-else>
-            <h1>{{conversation.topic}}</h1>
-            <h4>{{conversation.label}}</h4>
+            <h1>{{c.topic}}</h1>
+            <h4>{{c.label}}</h4>
         </template>
         <div class="messages">
             <template v-for="message in messages">
                 <Message :message="message"></Message> 
             </template>
         </div>
-        <div ref="bottom">
+        <div ref="bottom" v-if="!afficher">
             <form @submit.prevent="posterMessage" class="centered">
                 <div class ="row">
                     <div class="column column-60">
@@ -43,33 +51,42 @@ export default {
         return{
             conversation:false,
             message : '',
+            c:{topic: '', label: ''},
             messages : [],
-            editer : false
+            afficher : false
         }
     },
     mounted(){
         if(this.$route.params.id){
             api.get('channels/'+this.$route.params.id).then(response=>{
                 this.conversation = response.data;
+                this.clonerConversation();
                 this.chargerMessages();
             })
         }
     },
     methods :{
+        clonerConversation(){
+           this.c.id = this.conversation.id;
+           this.c.topic = this.conversation.topic;
+           this.c.label = this.conversation.label;
+        },
         editerConversation(){
-            this.editer = !this.editer;
+            this.afficher = true;
+            this.clonerConversation();
         },
         modifierConversation(){
-            api.put('channels/'+this.conversation.id, this.conversation).then(response => {
+            api.put('channels/'+this.c.id, this.c).then(response => {
                 this.conversation = response.data;
-                this.editer = false;
+                this.afficher = false;
+                this.clonerConversation();
             })
         },
         supprimerConversation(){
             if(confirm('Voulez vous vraiment supprimer la conversation ?')){
                 api.delete('channels/'+this.conversation.id).then(response =>{
+                    this.$bus.$emit('charger-conversations');
                     this.$router.push({name:'Home'});
-                    
                 })
             }
         },
@@ -90,6 +107,11 @@ export default {
                 this.message = '';
                 this.chargerMessages();
             })
+        },
+        annulerModif()
+        {
+            this.clonerConversation();
+            this.afficher = false;
         }
     }
 }
@@ -98,13 +120,14 @@ export default {
 .messages{
     padding-bottom: 1em;
 }
-form{
+form.centered{
     background:aliceblue;
     position: fixed;
     bottom: 0;
     left: 1em;
     width: 100%;
     margin: 0;
+    left: unset;
 }
 blockquote{
     border-left: 0.3rem solid #BDB76B;
@@ -116,22 +139,38 @@ blockquote{
     border-radius: 15px;
     max-width: max-content;
 }
-.centered{
-    left: unset;
-}
 .action{
     float: right;
     a{
         font-size: medium;
     }
 }
-.modifConver{
-    background: transparent;
-    padding-bottom: 24em;
-    padding-right: inherit;
-    fieldset{
-        float:inline-end;
-        width:auto;
+#creer-conversation{
+    position: fixed;
+    top: 0;
+    left:0;
+    width: 100%;
+    height:100%;
+    background : rgba(0,0,0,0.5);
+    & > section {
+        .close {
+            position : absolute;
+            top: -1em;
+            right : -1em;
+            width : 3em;
+            height : 3em;
+            line-height : 3em;
+            margin : 0;
+            padding : 0;
+            border-radius : 50%;
+        }
+        position : absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: white;
+        padding: 1em;
+        border-radius:1em;
     }
 }
 </style>

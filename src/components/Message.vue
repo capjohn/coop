@@ -4,7 +4,10 @@
         <div class="message">
             <header>
                 <div>
-                    <b>{{membre.fullname}}</b> <time>{{dateMessage}}</time>
+                    <router-link :to="{name:'Membre',params : {membre_id:membre.id}}">
+                        {{membre.fullname}}
+                    </router-link>
+                     <time>{{dateMessage}}</time>
                     <span v-if="message.member_id == this.$store.state.membre.id">
                         <li class="dropdown">
                             <a class="dropbtn" v-on:click.prevent="showDropDown=!showDropDown">...</a>
@@ -24,6 +27,7 @@
                     </div>
                 </div>
                 <button class="button button-small">Enregistrer</button>
+                <button type="button" @click="annulerMessage" class="button button-clear">Annuler</button>
             </form>
 
             <span v-else>{{message.message}}</span>
@@ -63,6 +67,9 @@
                         location.reload();
                     })
                 }
+            },
+            annulerMessage(){
+                this.modif=false;
             }
         },
         props: ['message','conversation'],
@@ -82,7 +89,7 @@
 </script>
 <style lang="scss">
     .message{
-        background: rgb(238, 238, 238);
+        background: #e7e5da;
         padding: 1em;
         margin: 1em 0;
         border-radius: 15px;

@@ -18,13 +18,13 @@ body {
   background-color: aliceblue;
 }
 a.logo{
-  color: #FFD700;
+  color: white;
 }
 
 /* header */
 
 .header {
-  background-color: rgb(238, 238, 238);
+  background-color: rgb(39, 39, 39);
   box-shadow: 1px 1px 4px 0 rgba(0,0,0,.1);
   position: fixed;
   width: 100%;
@@ -42,13 +42,12 @@ a.logo{
 .header li a {
   display: block;
   padding: 20px 20px;
-  border-right: 1px solid #f4f4f4;
   text-decoration: none;
 }
 
 .header li a:hover,
 .header .menu-btn:hover {
-  background-color: rgb(226, 226, 226);
+  background-color: rgb(71, 71, 71);
 }
 
 .header .logo {
@@ -63,9 +62,8 @@ a.logo{
 
 .header .menu {
   clear: both;
-  max-height: 0;
-  transition: max-height .2s ease-out;
-  background-color:  rgb(238, 238, 238);
+  transition: 0 .2s ease-out;
+  background-color:  rgb(39, 39, 39);
 }
 
 /* menu icon */
@@ -155,16 +153,19 @@ a.logo{
 
 #deconnect{
   margin-top: 1.2em;
-  background: #D8D076;
+  background: #BFB32B;
   border: none;
   margin-right: 1em;
 }
+#deconnect:hover{
+  background: #606c76;
+}
 
 a.router-link-exact-active.router-link-active{
-  color:#FFD700;
+  color:#BDB76B;
 }
 li>a{
-  color: #BDB76B;
+  color: white;
 }
 </style>
 <script>

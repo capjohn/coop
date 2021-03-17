@@ -4,19 +4,19 @@
         <form v-on:submit.prevent="creerCompte">
             <div>
                 <label>Nom et Prénom</label>
-                <input v-model="fullname" required type="text" placeholder="Nom"/>
+                <input v-model="fullname" required type="text" placeholder="Nom" id="yellowChange"/>
             </div>
             <div>
                 <label>Adresse mail</label>
-                <input v-model="email" type="email" required placeholder="Email"/>
+                <input v-model="email" type="email" required placeholder="Email" id="yellowChange"/>
             </div>
             <div>
                 <label>Mot de passe</label>
-                <input v-model="password" type="password" required placeholder="Mot de passe"/>
+                <input v-model="password" type="password" required placeholder="Mot de passe" id="yellowChange"/>
             </div>
             <div>
                 <label>Confirmer mot de passe</label>
-                <input v-model="confirmPassword" type="password" required placeholder="Retaper mot de passe"/>
+                <input v-model="confirmPassword" type="password" required placeholder="Retaper mot de passe" id="yellowChange"/>
             </div>
             <div>
                 <button class="button">Créer mon compte</button>

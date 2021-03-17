@@ -5,11 +5,11 @@
     <fieldset>
         <div>
             <label>Email</label>
-            <input v-model="email" required type="email" placeholder="email">
+            <input v-model="email" required type="email" placeholder="email" id="yellowChange">
         </div>
         <div>
             <label>Mot de passe</label>
-            <input v-model="password" required type="password" placeholder="Mot de passe">
+            <input v-model="password" required type="password" placeholder="Mot de passe" id="yellowChange">
         </div>
         <button>Se connecter</button>
         <p><router-link to="/creer-compte">Créer un compte</router-link></p>   
@@ -66,5 +66,7 @@ a {
   -webkit-box-shadow: 0 0 200px rgba(255, 255, 255, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3);
   box-shadow: 0 0 200px rgba(255, 255, 255, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3);
 }
-
+#yellowChange:focus{
+    border-color: #D8D076;
+}
 </style>

@@ -1,8 +1,8 @@
 <template>
     <div class="container" id="down" v-if="conversation">
         <div class="action">            
-            <a @click="editerConversation" class="button button-outline">Modifier </a>
-            <a @click="supprimerConversation" class="button button-outline"> 🗑 </a>
+            <a @click="editerConversation" class="button button-outline" id='yellow'>Modifier </a>
+            <a @click="supprimerConversation" class="button button-outline" id='yellow'> 🗑 </a>
         </div>
 
         <div id="creer-conversation" v-if="afficher">
@@ -172,5 +172,8 @@ blockquote{
         padding: 1em;
         border-radius:1em;
     }
+}
+#yellow{
+  color: #D8D076;
 }
 </style>

@@ -7,7 +7,7 @@
         <div class="column">
             <router-link :to="{name:'Membre',params : {membre_id:membre.id}}" class="button" title="Profil">Voir Profil</router-link> 
             &nbsp;
-            <button :disabled="membreConnecte" class="button button-outline" @click="effacerMembre" title="Effacer">X</button>
+            <button :disabled="membreConnecte" class="button button-outline" @click="effacerMembre" title="Effacer" id="yellow">X</button>
         </div>
     </div>
 </template>
@@ -41,5 +41,8 @@
 <style>
 .container{
     padding-top:5em;
+}
+#yellow{
+  color: #D8D076;
 }
 </style>

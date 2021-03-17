@@ -21,6 +21,10 @@ a.logo{
   color: white;
 }
 
+a{
+  color: white;
+}
+
 /* header */
 
 .header {

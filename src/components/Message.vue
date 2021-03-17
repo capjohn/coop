@@ -12,8 +12,8 @@
                         <li class="dropdown">
                             <a class="dropbtn" v-on:click.prevent="showDropDown=!showDropDown">...</a>
                             <div v-if="showDropDown" class="dropdown-content">
-                                <a @click='modif=!modif'>Modifier</a>
-                                <a @click='supprimerMessage'>Supprimer</a>
+                                <a @click='modif=!modif' id='blak'>Modifier</a>
+                                <a @click='supprimerMessage' id='blak'>Supprimer</a>
                             </div>
                         </li>
                     </span>
@@ -151,7 +151,7 @@
 
     }
 
-    .dropdown-content a {
+    #blak{
     color: black;
     padding: 12px 16px;
     text-decoration: none;
@@ -159,7 +159,7 @@
     text-align: center;
     }
 
-    .dropdown-content a:hover {background-color: #dfdabf;}
+    .blak:hover {background-color: #dfdabf;}
 
     .dropdown:hover .dropdown-content {
     display: block;

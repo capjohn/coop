@@ -30,7 +30,7 @@
                     </div>
                 </div>
                 <button class="button button-small">Enregistrer</button>
-                <button type="button" @click="this.modif=false;" class="button button-clear" id='yellow'>Annuler</button>
+                <button type="button" @click="AnnulerModif" class="button button-clear" id='yellow'>Annuler</button>
             </form>
 
             <!-- Sinon Affichage du message  -->
@@ -74,6 +74,9 @@
                         this.$bus.$emit('charger-messages');
                     })
                 }
+            },
+            AnnulerModif(){
+                this.modif=false;
             }
         },
         props: ['message','conversation'],

@@ -1,6 +1,6 @@
 <template>
     <li>
-        <router-link :to="{name:'Conversation',params:{id : conversation.id}}" class="span">
+        <router-link :to="{name:'Conversation',params:{id : conversation.id}}" id="conv">
             <h4>Sujet</h4>
             <h3><b>{{conversation.topic}}</b></h3>
             <h4>Tag</h4>
@@ -18,20 +18,20 @@ export default {
     float: left;
     margin:7px;	
 
-    .span{
+    #conv{
         display: block;
         text-decoration: none;
         color: white;
         font-weight: normal;
         font-size: 150%;
         width: 10em;
-        height: 240px;
+        max-height: 300px;
         text-align: center;
         text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.05);
         background: #D8D076;
         border-radius: 15px;
     }
-    .span:hover {
+    #conv:hover {
         background: rgb(94, 94, 94);
     }
 }

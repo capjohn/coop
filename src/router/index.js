@@ -3,7 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 
 Vue.use(VueRouter)
-
+// Déclaration des différentes routes vers les vues
 const routes = [
   {
     path: '/',

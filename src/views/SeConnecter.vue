@@ -1,21 +1,22 @@
 <template>
-<div class="log">
-    <h1>Se Connecter</h1>
-    <form @submit.prevent="connexion">
-    <fieldset>
-        <div>
-            <label>Email</label>
-            <input v-model="email" required type="email" placeholder="email" id="yellowChange">
-        </div>
-        <div>
-            <label>Mot de passe</label>
-            <input v-model="password" required type="password" placeholder="Mot de passe" id="yellowChange">
-        </div>
-        <button>Se connecter</button>
-        <p><router-link to="/creer-compte">Créer un compte</router-link></p>   
-    </fieldset> 
-    </form>
-</div>
+    <!-- Vue de Connexion avec lien vers la création de compte -->
+    <div class="log">
+        <h1>Se Connecter</h1>
+        <form @submit.prevent="connexion">
+        <fieldset>
+            <div>
+                <label>Email</label>
+                <input v-model="email" required type="email" placeholder="email" id="yellowChange">
+            </div>
+            <div>
+                <label>Mot de passe</label>
+                <input v-model="password" required type="password" placeholder="Mot de passe" id="yellowChange">
+            </div>
+            <button>Se connecter</button>
+            <p><router-link to="/creer-compte">Créer un compte</router-link></p>   
+        </fieldset> 
+        </form>
+    </div>
 </template>
 
 <script>
@@ -28,6 +29,7 @@ export default {
     },
     methods:
     {
+        // Requète de Connexion à l'API avec récupération des données de l'utilisateur et d'un token de connexion avant de charger les conversations et la page Home
         connexion()
         {
             api.post('members/signin',
@@ -40,6 +42,7 @@ export default {
                 this.$store.commit('setToken',response.data.token);
                 alert('Vous êtes maintenant connecté');
                 console.log(response.data); //contenu des data
+                this.$bus.$emit('charger-conversations');
                 this.$router.push('/');
             }).catch(error=>
             {

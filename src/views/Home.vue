@@ -1,4 +1,5 @@
 <template>
+  <!-- Vue principal avec Appel components CréerConversation et affiche liste des conversation -->
   <div>
     <div class="container" id="down">
       <h1>Liste des conversations</h1>

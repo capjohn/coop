@@ -1,5 +1,6 @@
 <template>
     <main>
+        <!-- Affichage de l'avatar et du nom avec lien de l'utilisateur et date du message -->
         <img :src="avatar">
         <div class="message">
             <header>
@@ -8,6 +9,8 @@
                         {{membre.fullname}}
                     </router-link>
                      <time>{{dateMessage}}</time>
+
+    <!-- Si l'utilisateur actuel est l'auteur du message et clic sur "..." affichage d'un menu déroulant avec Modifier ou Supprimer le message -->
                     <span v-if="message.member_id == this.$store.state.membre.id">
                         <li class="dropdown">
                             <a class="dropbtn" v-on:click.prevent="showDropDown=!showDropDown">...</a>
@@ -19,7 +22,7 @@
                     </span>
                 </div>
             </header>
-
+            <!-- Si Modifier a été actionné, affichage du bandeau de modification message -->
             <form v-if="modif" @submit.prevent="modifierMessage">
                 <div class ="row">
                     <div class="column">
@@ -27,10 +30,12 @@
                     </div>
                 </div>
                 <button class="button button-small">Enregistrer</button>
-                <button type="button" @click="annulerMessage" class="button button-clear" id='yellow'>Annuler</button>
+                <button type="button" @click="this.modif=false;" class="button button-clear" id='yellow'>Annuler</button>
             </form>
 
+            <!-- Sinon Affichage du message  -->
             <span v-else>{{message.message}}</span>
+            <!-- Si l'utilisateur se trouve sur la page de profil d'un utilisateur avec sa liste d'ancien message, lien vers la conversation d'origine -->
             <div class="conversation" v-if="message.conversation">
                 Présent dans <b><router-link :to="{name:'Conversation',params:{id:message.conversation.id}}">{{message.conversation.topic}}</router-link></b>
             </div>
@@ -53,6 +58,7 @@
             this.messageContent = this.message.message;
         },
         methods : {
+            // Modification du message dans l'API et remplace le contenu de l'actuel message affiché, fermeture du bandeau modifier
             modifierMessage()
             {
                 api.put(`channels/${this.message.channel_id}/posts/${this.message.id}`,{message:this.
@@ -61,15 +67,13 @@
                     this.modif=false;
                 })
             },
+            // Supression du message dans l'API après confirmation puis rechargement des messages
             supprimerMessage(){
                 if(confirm('Voulez vous vraiment supprimer ce message ?')){
                     api.delete(`channels/${this.message.channel_id}/posts/${this.message.id}`).then(response =>{
-                        location.reload();
+                        this.$bus.$emit('charger-messages');
                     })
                 }
-            },
-            annulerMessage(){
-                this.modif=false;
             }
         },
         props: ['message','conversation'],
@@ -77,10 +81,12 @@
             membre(){
                 return this.$store.getters.getMembre(this.message.member_id);
             },
+            // Changement du format de la date
             dateMessage(){
                 let options = {year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric'};
                 return new Date(this.message.created_at).toLocaleDateString('fr-FR', options);
             },
+            // Permet de récupérer un avatar a partir du site robohash ainsi qu'en utilisant un hachage md5 sur l'email du membre
             avatar(){
                 return 'https://robohash.org/'+md5(this.membre.email)+'?set=set4&bgset=&size=400x400'
             }

@@ -1,16 +1,29 @@
 <template>
-    <header class="header" v-if="$store.state.token">
-      <router-link to="/"><a class="logo">Co'op</a></router-link>
-      <input class="menu-btn" type="checkbox" id="menu-btn" />
-      <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
-      <ul class="menu">
-        <li><router-link to="/">Conversations</router-link></li>
-        <li><router-link to="/membres">Membres</router-link></li>
-        <li><button @click="seDeconnecter" id="deconnect">Se Déconnecter</button></li>
-      </ul>
-    </header>
+  <!-- Si l'utilisateur est authentifié (possède un token) alors le header apparait -->
+  <header class="header" v-if="$store.state.token">
+    <router-link to="/"><a class="logo">Co'op</a></router-link>
+    <input class="menu-btn" type="checkbox" id="menu-btn" />
+    <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+    <ul class="menu">
+      <!-- routes vers les vues conversations ou membres ainsi que bouton de déconnexion -->
+      <li><router-link to="/" id="header-white">Conversations</router-link></li>
+      <li><router-link to="/membres" id="header-white">Membres</router-link></li>
+      <li><button @click="seDeconnecter" id="deconnect">Se Déconnecter</button></li>
+    </ul>
+  </header>
 </template>
-
+<script>
+export default {
+    methods:{
+        seDeconnecter()
+        {
+          // Déconnecte l'utilisateur et redirige vers page de connexion
+            this.$store.commit('seDeconnecter');
+            this.$router.push('/se-connecter');
+        }
+    }
+}
+</script>
 <style>
 body {
   margin: 0;
@@ -18,10 +31,6 @@ body {
   background-color: aliceblue;
 }
 a.logo{
-  color: white;
-}
-
-a{
   color: white;
 }
 
@@ -165,21 +174,10 @@ a{
   background: #606c76;
 }
 
-a.router-link-exact-active.router-link-active{
-  color:#BDB76B;
-}
-li>a{
+#header-white{
   color: white;
 }
-</style>
-<script>
-export default {
-    methods:{
-        seDeconnecter()
-        {
-            this.$store.commit('seDeconnecter');
-            this.$router.push('/se-connecter');
-        }
-    }
+#header-white.router-link-exact-active{
+  color: #BFB32B;
 }
-</script>
+</style>

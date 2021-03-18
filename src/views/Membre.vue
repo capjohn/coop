@@ -1,4 +1,5 @@
 <template>
+    <!-- Vue Membre avec affichage de l'avatar, nom, email et date d'inscription de l'utilisateur -->
     <div class="container" v-if="membre">
         <img class="avatar" :src="avatar">
         <ul>
@@ -8,6 +9,7 @@
         </ul>
 
         <h2>Messages: </h2>
+        <!-- Pendant le chargement des messages de l'utilisateur, affichage d'un logo de chargement -->
         <div class="loader" v-if="loading">
         </div>
         <div v-else v-for="message in messagesTries">
@@ -27,6 +29,7 @@
             }
         },
         computed :{
+            // Compare la date de création du message précédent afin d'ordonner les 10 dernières messages de l'utilisateur
             messagesTries() {
                 function compare(a, b){
                     if(a.created_at < b.created_at){
@@ -39,6 +42,7 @@
                 }
                 return this.messages.sort(compare).slice(0,10);
             },
+            // Permet de récupérer un avatar a partir du site robohash ainsi qu'en utilisant un hachage md5 sur l'email du membre
             avatar(){
                 return 'https://robohash.org/'+md5(this.membre.email)+'?set=set4&bgset=&size=400x400'
             }

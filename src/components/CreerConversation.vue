@@ -1,5 +1,6 @@
 <template>
     <div>
+        <!-- pop up création conversation -->
         <div id="creer-conversation" v-if="afficher">
             <section>
                 <button class="close" @click="masquerFormulaire">X</button>
@@ -13,7 +14,6 @@
                         <input v-model="label" required type="text" placeholder="Quels sont les thèmes abordés ?">
                         <button>Créer la conversation</button>
                         <button type="button" @click="masquerFormulaire" class="button button-clear"  id='yellow'>Annuler</button>
-
                     </fieldset>
                 </form>
             </section>
@@ -34,6 +34,7 @@ export default {
         this.$bus.$on('afficher-creer-conversation', this.afficherFormulaire)
     },
     methods :{
+        // Méthode de création de la conversation avec requète post vers l'api puis fermeture formulaire et rechargement liste des conversation
         creerConversation() {
             api.post('channels',{
                 label: this.label,

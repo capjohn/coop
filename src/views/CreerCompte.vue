@@ -1,4 +1,5 @@
 <template>
+    <!-- Vue de la création de compte -->
     <div class="log">
         <h1>Créer un compte </h1>
         <form v-on:submit.prevent="creerCompte">
@@ -35,6 +36,7 @@
             }
         },
         methods : {
+            // Création du compte si la vérification de mot de passe est identique au mot de passe, alerte et redirection après succès ou message d'erreur
             creerCompte(){
                 if(this.confirmPassword == this.password)
                 {
